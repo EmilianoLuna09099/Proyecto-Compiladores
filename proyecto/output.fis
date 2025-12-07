@@ -1,0 +1,333 @@
+// Codigo FIS-25 generado
+VAR niveles
+ASSIGN 8 niveles
+VAR lock_up
+ASSIGN 0 lock_up
+VAR lock_down
+ASSIGN 0 lock_down
+VAR actualizar
+ASSIGN 1 actualizar
+VAR max_niveles
+ASSIGN 32 max_niveles
+VAR min_niveles
+ASSIGN 1 min_niveles
+LABEL L0
+VAR _t0
+EQ 1 1 _t0
+IFFALSE _t0 GOTO L1
+VAR key_up
+KEY 1 key_up
+VAR key_down
+KEY 2 key_down
+VAR _t1
+EQ key_up 1 _t1
+IFFALSE _t1 GOTO L2
+VAR _t2
+EQ lock_up 0 _t2
+IFFALSE _t2 GOTO L4
+VAR _t3
+ADD niveles 1 _t3
+ASSIGN _t3 niveles
+VAR _t4
+GT niveles max_niveles _t4
+IFFALSE _t4 GOTO L6
+ASSIGN max_niveles niveles
+GOTO L7
+LABEL L6
+LABEL L7
+ASSIGN 1 actualizar
+ASSIGN 1 lock_up
+GOTO L5
+LABEL L4
+LABEL L5
+GOTO L3
+LABEL L2
+LABEL L3
+VAR _t5
+EQ key_up 0 _t5
+IFFALSE _t5 GOTO L8
+ASSIGN 0 lock_up
+GOTO L9
+LABEL L8
+LABEL L9
+VAR _t6
+EQ key_down 1 _t6
+IFFALSE _t6 GOTO L10
+VAR _t7
+EQ lock_down 0 _t7
+IFFALSE _t7 GOTO L12
+VAR _t8
+SUB niveles 1 _t8
+ASSIGN _t8 niveles
+VAR _t9
+LT niveles min_niveles _t9
+IFFALSE _t9 GOTO L14
+ASSIGN min_niveles niveles
+GOTO L15
+LABEL L14
+LABEL L15
+ASSIGN 1 actualizar
+ASSIGN 1 lock_down
+GOTO L13
+LABEL L12
+LABEL L13
+GOTO L11
+LABEL L10
+LABEL L11
+VAR _t10
+EQ key_down 0 _t10
+IFFALSE _t10 GOTO L16
+ASSIGN 0 lock_down
+GOTO L17
+LABEL L16
+LABEL L17
+VAR _t11
+EQ actualizar 1 _t11
+IFFALSE _t11 GOTO L18
+VAR y
+ASSIGN 0 y
+LABEL L20
+VAR _t12
+LT y 64 _t12
+IFFALSE _t12 GOTO L21
+GOTO L22
+LABEL L23
+VAR _t13
+ADD y 1 _t13
+ASSIGN _t13 y
+GOTO L20
+LABEL L22
+VAR x
+ASSIGN 0 x
+LABEL L24
+VAR _t14
+LT x 64 _t14
+IFFALSE _t14 GOTO L25
+GOTO L26
+LABEL L27
+VAR _t15
+ADD x 1 _t15
+ASSIGN _t15 x
+GOTO L24
+LABEL L26
+PIXEL x y 0
+GOTO L27
+LABEL L25
+GOTO L23
+LABEL L21
+PRINT "Dibujando fractal con niveles:"
+PRINT niveles
+VAR base_y
+ASSIGN 2 base_y
+VAR escala
+ASSIGN 2 escala
+VAR offset_x
+ASSIGN 32 offset_x
+VAR fila
+ASSIGN 0 fila
+LABEL L28
+VAR _t16
+LT fila niveles _t16
+IFFALSE _t16 GOTO L29
+GOTO L30
+LABEL L31
+VAR _t17
+ADD fila 1 _t17
+ASSIGN _t17 fila
+GOTO L28
+LABEL L30
+VAR _t18
+MUL fila escala _t18
+VAR _t19
+ADD base_y _t18 _t19
+VAR y_pos
+ASSIGN _t19 y_pos
+VAR _t20
+LT y_pos 64 _t20
+IFFALSE _t20 GOTO L32
+VAR _t21
+SUB offset_x fila _t21
+VAR inicio_x
+ASSIGN _t21 inicio_x
+VAR col
+ASSIGN 0 col
+LABEL L34
+VAR _t22
+LTE col fila _t22
+IFFALSE _t22 GOTO L35
+GOTO L36
+LABEL L37
+VAR _t23
+ADD col 1 _t23
+ASSIGN _t23 col
+GOTO L34
+LABEL L36
+VAR _t24
+MUL col escala _t24
+VAR _t25
+ADD inicio_x _t24 _t25
+VAR x_pos
+ASSIGN _t25 x_pos
+VAR _t26
+GTE x_pos 0 _t26
+IFFALSE _t26 GOTO L38
+VAR _t27
+LT x_pos 64 _t27
+IFFALSE _t27 GOTO L40
+VAR es_impar
+ASSIGN 1 es_impar
+VAR temp_n
+ASSIGN fila temp_n
+VAR temp_k
+ASSIGN col temp_k
+VAR bit
+ASSIGN 0 bit
+LABEL L42
+VAR _t28
+LT bit 6 _t28
+IFFALSE _t28 GOTO L43
+GOTO L44
+LABEL L45
+VAR _t29
+ADD bit 1 _t29
+ASSIGN _t29 bit
+GOTO L42
+LABEL L44
+VAR mask
+ASSIGN 1 mask
+VAR b
+ASSIGN 0 b
+LABEL L46
+VAR _t30
+LT b bit _t30
+IFFALSE _t30 GOTO L47
+GOTO L48
+LABEL L49
+VAR _t31
+ADD b 1 _t31
+ASSIGN _t31 b
+GOTO L46
+LABEL L48
+VAR _t32
+MUL mask 2 _t32
+ASSIGN _t32 mask
+GOTO L49
+LABEL L47
+VAR _t33
+DIV temp_k mask _t33
+VAR bit_k
+ASSIGN _t33 bit_k
+VAR _t34
+MOD bit_k 2 _t34
+ASSIGN _t34 bit_k
+VAR _t35
+DIV temp_n mask _t35
+VAR bit_n
+ASSIGN _t35 bit_n
+VAR _t36
+MOD bit_n 2 _t36
+ASSIGN _t36 bit_n
+VAR _t37
+EQ bit_k 1 _t37
+IFFALSE _t37 GOTO L50
+VAR _t38
+EQ bit_n 0 _t38
+IFFALSE _t38 GOTO L52
+ASSIGN 0 es_impar
+GOTO L53
+LABEL L52
+LABEL L53
+GOTO L51
+LABEL L50
+LABEL L51
+GOTO L45
+LABEL L43
+VAR _t39
+EQ es_impar 1 _t39
+IFFALSE _t39 GOTO L54
+VAR dy
+ASSIGN 0 dy
+LABEL L56
+VAR _t40
+LT dy escala _t40
+IFFALSE _t40 GOTO L57
+GOTO L58
+LABEL L59
+VAR _t41
+ADD dy 1 _t41
+ASSIGN _t41 dy
+GOTO L56
+LABEL L58
+VAR dx
+ASSIGN 0 dx
+LABEL L60
+VAR _t42
+LT dx escala _t42
+IFFALSE _t42 GOTO L61
+GOTO L62
+LABEL L63
+VAR _t43
+ADD dx 1 _t43
+ASSIGN _t43 dx
+GOTO L60
+LABEL L62
+VAR _t44
+ADD x_pos dx _t44
+VAR px
+ASSIGN _t44 px
+VAR _t45
+ADD y_pos dy _t45
+VAR py
+ASSIGN _t45 py
+VAR _t46
+GTE px 0 _t46
+IFFALSE _t46 GOTO L64
+VAR _t47
+LT px 64 _t47
+IFFALSE _t47 GOTO L66
+VAR _t48
+GTE py 0 _t48
+IFFALSE _t48 GOTO L68
+VAR _t49
+LT py 64 _t49
+IFFALSE _t49 GOTO L70
+PIXEL px py 1
+GOTO L71
+LABEL L70
+LABEL L71
+GOTO L69
+LABEL L68
+LABEL L69
+GOTO L67
+LABEL L66
+LABEL L67
+GOTO L65
+LABEL L64
+LABEL L65
+GOTO L63
+LABEL L61
+GOTO L59
+LABEL L57
+GOTO L55
+LABEL L54
+LABEL L55
+GOTO L41
+LABEL L40
+LABEL L41
+GOTO L39
+LABEL L38
+LABEL L39
+GOTO L37
+LABEL L35
+GOTO L33
+LABEL L32
+LABEL L33
+GOTO L31
+LABEL L29
+ASSIGN 0 actualizar
+PRINT "Fractal actualizado"
+GOTO L19
+LABEL L18
+LABEL L19
+GOTO L0
+LABEL L1
